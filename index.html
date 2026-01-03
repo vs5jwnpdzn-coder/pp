@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Eingabefeld</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        input, button {
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Eingabefeld</h1>
+
+    <input type="text" id="eingabe" placeholder="Text eingeben">
+    <button onclick="anzeigen()">Anzeigen</button>
+
+    <p id="ausgabe"></p>
+
+    <script>
+        function anzeigen() {
+            const text = document.getElementById("eingabe").value;
+            document.getElementById("ausgabe").textContent = text;
+        }
+    </script>
+
+</body>
+</html>
