@@ -1,37 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <title>Eingabefeld</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        input, button {
-            padding: 8px;
-            font-size: 16px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nachricht an Telegram</title>
 </head>
-<body>
+<body style="font-family: Arial, sans-serif; text-align:center; margin-top:50px;">
+    <h1>VERSION TEST 123</h1>
+  <h1>Nachricht an Telegram senden</h1>
 
-    <h1>Eingabefeld</h1>
+  <input
+    id="msg"
+    type="text"
+    placeholder="Text eingeben"
+    maxlength="200"
+    style="padding:8px; font-size:16px; width:min(420px, 90vw);"
+  />
+  <button
+    id="btn"
+    style="padding:8px 12px; font-size:16px; cursor:pointer; margin-left:8px;"
+  >
+    Senden
+  </button>
 
-    <input type="text" id="eingabe" placeholder="Text eingeben">
-    <button onclick="anzeigen()">Anzeigen</button>
+  <p id="status" style="margin-top:16px;"></p>
 
-    <p id="ausgabe"></p>
+  <script>
+    let lastSend = 0;
 
-    <script>
-        function anzeigen() {
-            const text = document.getElementById("eingabe").value;
-            document.getElementById("ausgabe").textContent = text;
-        }
-    </script>
+    document.getElementById("btn").addEventListener("click", async () => {
+      const now = Date.now();
+      if (now - lastSend < 10000) {
+        document.getElementById("status").textContent = "Bitte 10 Sekunden warten ⏳";
+        return;
+      }
 
+      const text = document.getElementById("msg").value.trim();
+      if (!text) {
+        document.getElementById("status").textContent = "Bitte Text eingeben.";
+        return;
+      }
+
+      lastSend = now;
+      document.getElementById("status").textContent = "Sende…";
+
+      try {
+        const res = await fetch("/api/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: text })
+        });
+
+        document.getElementById("status").textContent = res.ok ? "Gesendet ✅" : "Fehler ❌";
+      } catch (e) {
+        document.getElementById("status").textContent = "Fehler ❌";
+      }
+    });
+  </script>
 </body>
 </html>
