@@ -42,20 +42,25 @@
   }
 
   /* 🔑 WICHTIG: Grid statt Flex → bleibt IMMER eine Reihe */
-  .code-inputs {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-    margin-bottom: 16px;
-  }
+ .code-inputs{
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
 
-  .code-inputs input {
-    height: 50px;
-    font-size: 20px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
+.code-inputs input{
+  width: 100%;
+  min-width: 0;          /* 🔥 verhindert “rausrutschen” */
+  height: 50px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;       /* iOS-Zoom vermeiden */
+
 
     /* verhindert iOS-Zoom */
     font-size: 16px;
