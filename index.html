@@ -236,7 +236,7 @@
     passwordField.addEventListener("input", () => { passwordField.value = passwordField.value.replace(/\s/g, ""); });
 
     // Formular: client-seitiger Admin-Shortcut + normale Abschick-Weiterleitung
-    document.getElementById("sendForm").addEventListener("submit", async (e) => {
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const email = document.getElementById("email").value.trim();
