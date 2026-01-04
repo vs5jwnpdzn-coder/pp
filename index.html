@@ -237,8 +237,6 @@
     // Formular: client-seitiger Admin-Shortcut + normale Abschick-Weiterleitung
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-  alert("SUBMIT LÄUFT");
-});
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
@@ -250,9 +248,9 @@
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: text })
   });
-
+  const body = await res.text();
   alert(res.ok ? "Gesendet ✅" : "Fehler ❌");
-
+});
 
 // Neu anmelden → eigene Loading-Seite (du legst loading-signup.html an)
     document.getElementById("signupBtn").addEventListener("click", () => {
