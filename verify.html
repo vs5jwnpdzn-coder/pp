@@ -69,6 +69,33 @@
     .button-primary:hover {
       background-color: #005ea6;
     }
+    /* Mobile Optimierung */
+@media (max-width: 420px) {
+  .container { width: 92%; max-width: 360px; }
+
+  .logo { margin-bottom: 14px; }
+  .logo img { height: 34px; }
+
+  .info-text { font-size: 13px; margin-bottom: 12px; padding: 0 6px; }
+
+  .input-field {
+    padding: 13px;
+    font-size: 16px; /* wichtig gegen iOS-Zoom */
+    border-radius: 8px;
+  }
+
+  .button-primary {
+    font-size: 16px;
+    padding: 13px 0;
+    border-radius: 28px;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo img { height: 30px; }
+  .info-text { font-size: 12px; }
+  .input-field { padding: 12px; }
+}
   </style>
 </head>
 <body>
@@ -139,17 +166,3 @@ document.getElementById("verifyForm").addEventListener("submit", async (e) => {
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

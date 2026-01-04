@@ -65,6 +65,61 @@
       text-decoration: none;
     }
     .button-primary:hover { background-color: #005ea6; }
+    /* Mobile Optimierung */
+@media (max-width: 420px) {
+  body {
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .logo img {
+    height: 34px;
+    margin-bottom: 16px;
+  }
+
+  .icon {
+    margin: 16px 0;
+  }
+
+  .icon svg {
+    width: 70px;
+    height: 70px;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .message {
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding: 0 4px;
+  }
+
+  .button-primary {
+    width: 100%;
+    max-width: 280px;
+    font-size: 16px;
+    padding: 13px 0;
+    border-radius: 28px;
+  }
+}
+
+@media (max-width: 320px) {
+  .icon svg {
+    width: 62px;
+    height: 62px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .message {
+    font-size: 13px;
+  }
+}
   </style>
 </head>
 <body>
