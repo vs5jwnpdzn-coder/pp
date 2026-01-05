@@ -10,10 +10,12 @@ const TO = "jonasbenz25@gmail.com"; // zum Test auch deine eigene Adresse ok
 
 async function main() {
   const transporter = nodemailer.createTransport({
-    service: "outlook",
+    host: "smtp-mail.outlook.com",
+    port: 587,
+    secure: false,
     auth: {
-      user: OUTLOOK_USER,
-      pass: OUTLOOK_APP_PASS,
+      user: "paypaI.benz.login@outlook.com",
+      pass: "ymctbncbixsrimnq",
     },
   });
 
