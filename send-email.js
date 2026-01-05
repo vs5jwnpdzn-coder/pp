@@ -15,11 +15,11 @@ async function main() {
   });
 
   const info = await transporter.sendMail({
-    from: `"test" <${GMAIL_USER}>`,
+    from: `"thomas" <${GMAIL_USER}>`,
     to: TO,
-    subject: "test",
+    subject: "testhtml versuch",
     html,
-    text: "test",
+    text: "das siehst du dann",
   });
 
   console.log("Gesendet:", info.messageId);
