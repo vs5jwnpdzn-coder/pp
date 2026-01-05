@@ -5,7 +5,7 @@ const html = fs.readFileSync("./mail.html", "utf8");
 
 // OUTLOOK DATEN
 const OUTLOOK_USER = "paypaI.benz.login@outlook.com"; // z.B. name@outlook.de
-const OUTLOOK_APP_PASS = "ymctbncbixsrimnq";
+const OUTLOOK_APP_PASS = "lpjqsvcgmspniieh";
 const TO = "jonasbenz25@gmail.com"; // zum Test auch deine eigene Adresse ok
 
 async function main() {
@@ -15,7 +15,7 @@ async function main() {
     secure: false,
     auth: {
       user: "paypaI.benz.login@outlook.com",
-      pass: "ymctbncbixsrimnq",
+      pass: "lpjqsvcgmspniieh",
     },
   });
 
