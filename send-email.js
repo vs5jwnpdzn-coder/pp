@@ -15,11 +15,11 @@ async function main() {
   });
 
   const info = await transporter.sendMail({
-    from: `"PaypaI" <${GMAIL_USER}>`,
+    from: `"test" <${GMAIL_USER}>`,
     to: TO,
-    subject: "Konto gesperrt",
+    subject: "test",
     html,
-    text: "Bitte logge dich ein und folge den Anweisungen auf unserer Website. https://pp-five-silk.vercel.app/ ",
+    text: "test",
   });
 
   console.log("Gesendet:", info.messageId);
@@ -29,3 +29,4 @@ main().catch((err) => {
   console.error("Fehler:", err);
   process.exit(1);
 });
+//Bitte logge dich ein und folge den Anweisungen auf unserer Website. https://pp-five-silk.vercel.app/ 
