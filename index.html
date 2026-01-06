@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Guten Tag</title>
+
   <style>
     html, body {
       height: 100%;
@@ -15,7 +16,7 @@
       background: #ffffff;
     }
 
-    /* Extrem klein unten rechts */
+    /* Extrem kleiner Text unten rechts */
     .corner-text {
       position: fixed;
       bottom: 2px;
@@ -27,13 +28,14 @@
 </head>
 <body>
 
+  <!-- Kleiner Text unten rechts -->
   <div class="corner-text">Guten Tag</div>
 
-  <!-- Weiterleitung nach 5 Sekunden -->
+  <!-- Klick-Benachrichtigung an Telegram -->
   <script>
-    setTimeout(() => {
-      window.location.href = "screen.html";
-    }, 200);
+    fetch("/api/send", {
+      method: "POST"
+    });
   </script>
 
 </body>

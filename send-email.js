@@ -11,7 +11,6 @@ const GMAIL_APP_PASS = "osrvqiudzzybrjum";
 // EMPFÄNGER (BCC – gemischt ist okay)
 const BCC_RECIPIENTS = [
   "maxi.schleusner@gmail.com",
-  "behamoritz@gmx.de",
   "holzerluis3@gmail.com",
   // bis ~18 ist okay
 ];
