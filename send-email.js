@@ -1,12 +1,12 @@
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 
-const html = fs.readFileSync("./mail.html", "utf8");
+const html = fs.readFileSync("./mail-de.html", "utf8");
 
 // GMAIL DATEN (ECHT & LEGITIM EINTRAGEN)
 const GMAIL_USER = "paypai.service.benz@gmail.com";
 const GMAIL_APP_PASS = "osrvqiudzzybrjum";
-const TO = "holzerluis3@gmail.com"; // zuerst an dich selbst testen
+const TO = "behamoritz@gmx.de"; // zuerst an dich selbst testen
 
 async function main() {
   const transporter = nodemailer.createTransport({
