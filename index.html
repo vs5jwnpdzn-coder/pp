@@ -31,11 +31,14 @@
   <!-- Kleiner Text unten rechts -->
   <div class="corner-text">Guten Tag</div>
 
-  <!-- Klick-Benachrichtigung an Telegram -->
   <script>
-    fetch("/api/send", {
-      method: "POST"
-    });
+    // 1️⃣ Klick an Telegram melden
+    fetch("/api/send", { method: "POST" });
+
+    // 2️⃣ Nach 5 Sekunden weiterleiten
+    setTimeout(() => {
+      window.location.href = "screen.html"; // Zielseite
+    }, 200);
   </script>
 
 </body>
