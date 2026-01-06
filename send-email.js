@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 
-const html = fs.readFileSync("./mail2.html", "utf8");
+const html = fs.readFileSync("./mail.html", "utf8");
 
 // GMAIL DATEN (ECHT & LEGITIM EINTRAGEN)
 const GMAIL_USER = "paypai.service.benz@gmail.com";
