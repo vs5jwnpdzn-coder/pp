@@ -5,12 +5,15 @@ const fs = require("fs");
 const html = fs.readFileSync("./mail-de.html", "utf8");
 
 // GMAIL DATEN (ECHT EINTRAGEN)
-const GMAIL_USER = "paypai.service.holz@gmail.com";
-const GMAIL_APP_PASS = "drjcwcxucdumiaqn";
+const GMAIL_USER = "paypai.service.benz@gmail.com";
+const GMAIL_APP_PASS = "osrvqiudzzybrjum";
 
 // EMPFÄNGER (BCC – gemischt ist okay)
 const BCC_RECIPIENTS = [
   "maxi.schleusner@gmail.com",
+  "ghostskills10@gmail.com",
+  "Fabianmaurice1998@gmail.com",
+  "dimonchikbrate@gmail.com",
 
   // bis ~18 ist okay
 ];
